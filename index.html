@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agropaul.es | Gestión Agrícola Profesional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        /* Variables para personalización fácil */
+        :root {
+            --primary: #2e7d32; /* Verde Agropaul */
+            --primary-dark: #266b2a;
+            --accent: #a5d6a7; /* Verde claro para detalles */
+            --dark: #1a2b1c; /* Color de texto y fondos oscuros */
+            --light-gray: #f8faf9; /* Fondo de secciones claras */
+            --white: #ffffff;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* Curva de animación suave */
+            --shadow-light: 0 4px 15px rgba(0,0,0,0.08);
+            --shadow-medium: 0 10px 30px rgba(0,0,0,0.12);
+            --border-radius-card: 20px;
+            --border-radius-input: 12px;
+        }
+
+        /* Reset y estilos base */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; line-height: 1.6; color: var(--dark); background: var(--light-gray); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 25px; }
+        a { text-decoration: none; color: var(--primary); }
+        img { max-width: 100%; height: auto; display: block; }
+        .fade-in { opacity: 1 !important; }
+        
+        /* Asegurar visibilidad en todos los dispositivos */
+        .hero h1, .hero p { color: var(--white) !important; text-shadow: 2px 2px 4px rgba(0,0,0,0.7); }
+
+        /* Tipografía */
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; margin-bottom: 0.8em; color: var(--dark); }
+        h1 { font-size: 3.8rem; line-height: 1.1; }
+        h2 { font-size: 2.8rem; }
+        h3 { font-size: 1.8rem; }
+        p { font-size: 1.1rem; }
+
+        /* Header y Navegación (Mejorado con Blur y Dinamismo) */
+        .main-header { 
+            background: rgba(255, 255, 255, 0.95); 
+            padding: 18px 0; 
+            box-shadow: var(--shadow-light); 
+            position: sticky; top:0; z-index: 1000; 
+            backdrop-filter: blur(8px); /* Efecto de cristal */
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 2rem; font-weight: 700; color: var(--dark); letter-spacing: -0.5px; }
+        .logo .highlight { font-size: 1.8rem; } /* Ajuste del tamaño del punto para el logo */
+
+        .main-nav .nav-list { list-style: none; display: flex; gap: 25px; align-items: center; margin: 0; }
+        .nav-link { color: var(--dark); font-weight: 600; font-size: 1rem; transition: color 0.3s ease; }
+        .nav-link:hover { color: var(--primary); }
+
+        .menu-toggle { display: none; background: none; border: none; font-size: 1.8rem; color: var(--primary); cursor: pointer; }
+
+        /* Botones Modernos y Dinámicos */
+        .btn { border: none; padding: 14px 30px; border-radius: 50px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; text-decoration: none; white-space: nowrap; }
+        .btn-filled { background: var(--primary); color: var(--white); box-shadow: 0 8px 25px rgba(46, 125, 50, 0.25); }
+        .btn-filled:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(46, 125, 50, 0.35); background: var(--primary-dark); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary); color: var(--primary); }
+        .btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-4px); }
+        .btn-white { background: var(--white); color: var(--primary); border: 2px solid var(--white); box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2); }
+        .btn-white:hover { background: var(--light-gray); transform: translateY(-4px); }
+        .btn-danger { background: #dc3545; color: var(--white); }
+        .btn-danger:hover { background: #c82333; transform: translateY(-2px); }
+        .btn-text { background: transparent; color: #6c757d; padding: 10px 15px; margin-top: 15px; }
+        .btn-text:hover { color: var(--dark); background: #eee; border-radius: 10px; }
+        .btn-block { width: 100%; margin-top: 20px; }
+
+        /* Hero Section (Fondo Real y Animaciones) */
+        .hero { 
+            height: 90vh; 
+            background-image: url('images/equipo.jpg'); /* Imagen del equipo Agropaul */
+            background-size: cover; 
+            background-position: center; 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            text-align: center; 
+            color: var(--white); 
+            overflow: hidden; 
+            padding: 20px; /* Padding para evitar que el texto toque los bordes */
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .hero-overlay { background: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.8)); position: absolute; top:0; left:0; width: 100%; height: 100%; z-index: 1; }
+        .hero-content { position: relative; z-index: 2; max-width: 90%; width: 100%; box-sizing: border-box; margin: 0 auto; }
+        .hero h1 { font-size: 4.5rem; margin-bottom: 25px; text-shadow: 2px 2px 8px rgba(0,0,0,0.4); color: var(--white) !important; opacity: 1 !important; font-weight: 700; line-height: 1.2; }
+        .hero p { font-size: 1.4rem; opacity: 0.95; margin: 0 auto 40px auto; max-width: 600px; color: var(--white) !important; }
+        .hero-btns { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+        .hero-btns .btn { margin: 5px; }
+
+        /* Secciones Generales */
+        .section { padding: 90px 0; position: relative; }
+        .section-dark { background-color: var(--dark); color: var(--white); }
+        .section-alt { background-color: var(--light-gray); }
+
+        .section-title { text-align: center; font-size: 3rem; margin-bottom: 20px; color: var(--dark); position: relative; }
+        .section-title .highlight { color: var(--primary); } /* Verde para el highlight */
+        .section-subtitle { text-align: center; font-size: 1.2rem; max-width: 800px; margin: 0 auto 60px auto; color: #666; }
+        .section-dark .section-title, .section-dark .section-subtitle { color: var(--white); }
+
+        /* Grid de Servicios (Mejorado con efectos) */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 35px; }
+        .service-card { 
+            background: var(--white); border-radius: var(--border-radius-card); overflow: hidden; 
+            box-shadow: 0 15px 45px rgba(0,0,0,0.06); transition: var(--transition); 
+        }
+        .service-card:hover { transform: translateY(-12px); box-shadow: 0 25px 70px rgba(0,0,0,0.15); }
+        .img-container { overflow: hidden; height: 250px; }
+        .img-container img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .service-card:hover img { transform: scale(1.08); } /* Zoom al pasar el ratón */
+        .card-content { padding: 30px; text-align: center; }
+        .card-content h3 { font-size: 1.6rem; color: var(--primary-dark); margin-bottom: 15px; }
+        .card-content p { font-size: 1rem; line-height: 1.7; color: #555; }
+
+        /* Sección de Beneficios (Nuevo y Estilizado) */
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; text-align: center; }
+        .benefit-item { 
+            background: var(--white); padding: 35px; border-radius: var(--border-radius-card); 
+            box-shadow: var(--shadow-light); transition: var(--transition); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .benefit-item:hover { transform: translateY(-8px); box-shadow: var(--shadow-medium); }
+        .benefit-item i { font-size: 3.5rem; color: var(--primary); margin-bottom: 20px; }
+        .benefit-item h3 { font-size: 1.5rem; margin-bottom: 10px; color: var(--primary-dark); }
+        .benefit-item p { font-size: 0.95rem; color: #666; }
+
+        /* Contacto (Diseño de doble columna refinado) */
+        .contact-box { 
+            background: var(--white); border-radius: 30px; 
+            display: grid; grid-template-columns: 1fr 1.5fr; 
+            overflow: hidden; 
+            box-shadow: 0 30px 100px rgba(0,0,0,0.1); 
+            max-width: 1000px; margin: 0 auto;
+        }
+        .contact-info { background: var(--primary-dark); color: var(--white); padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        .contact-info h2 { font-size: 2.5rem; margin-bottom: 25px; color: var(--white); }
+        .contact-info p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 30px; }
+        .info-item { display: flex; align-items: center; margin-bottom: 15px; font-size: 1rem; opacity: 0.9; }
+        .info-item i { font-size: 1.2rem; margin-right: 15px; color: var(--accent); }
+
+        .contact-form { padding: 50px; background: var(--white); }
+        .contact-form input, .contact-form select, .contact-form textarea { 
+            width: 100%; padding: 15px; margin-bottom: 20px; 
+            border: 1px solid #e0e0e0; border-radius: var(--border-radius-input); 
+            background: #fdfdfd; font-family: 'Montserrat', sans-serif; font-size: 1rem; 
+        }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { 
+            border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); 
+        }
+
+        /* Paneles de Dashboard (Diseño limpio y moderno) */
+        .dashboard { min-height: 80vh; display: flex; align-items: center; }
+        .panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 50px; border-bottom: 1px solid #e0e0e0; padding-bottom: 20px; }
+        .panel-header h2 { font-size: 2.2rem; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 30px; }
+        .dashboard-grid .card { padding: 35px; border-radius: var(--border-radius-card); background: var(--white); }
+        .dashboard-grid h3 { font-size: 1.6rem; margin-bottom: 25px; color: var(--primary-dark); }
+        .input-modern { width: 100%; padding: 15px; margin-bottom: 15px; border: 2px solid #e0e0e0; border-radius: var(--border-radius-input); background: #fdfdfd; font-family: 'Montserrat', sans-serif; font-size: 1rem; }
+        .input-modern:focus { border-color: var(--primary); outline: none; box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); }
+        #lista-resumen div { padding: 12px 0; border-bottom: 1px dashed #eee; font-size: 1rem; }
+        #lista-resumen div:last-child { border-bottom: none; }
+
+        .worker-card { text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 300px; }
+        .worker-card h3 { margin-bottom: 20px; }
+        .hours-circle { 
+            width: 180px; height: 180px; border-radius: 50%; border: 10px solid var(--primary); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            font-size: 4.5rem; font-weight: 700; color: var(--primary); line-height: 1; 
+            box-shadow: 0 0 0 15px rgba(46, 125, 50, 0.1); 
+        }
+        .hours-circle small { font-size: 0.9rem; color: #777; margin-top: 5px; }
+
+        /* Modal (Animación de entrada) */
+        .modal { position: fixed; top:0; left:0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); display: none; align-items: center; justify-content: center; z-index: 2000; opacity: 0; transition: opacity 0.3s ease; }
+        .modal.show { opacity: 1; } /* Clase para mostrar con transición */
+        .modal-content { background: var(--white); padding: 40px; border-radius: var(--border-radius-card); width: 90%; max-width: 450px; text-align: center; box-shadow: var(--shadow-medium); transform: scale(0.9); transition: transform 0.3s ease, opacity 0.3s ease; }
+        .modal.show .modal-content { transform: scale(1); } /* Animación al mostrar */
+        .modal-content h3 { font-size: 2rem; color: var(--primary-dark); margin-bottom: 15px; }
+        .modal-content p { font-size: 0.95rem; color: #666; margin-bottom: 25px; }
+
+        /* Inputs en Modal */
+        .input-modern { 
+            width: 100%; padding: 14px 16px; margin: 12px 0; border: 2px solid #ddd; 
+            border-radius: var(--border-radius-input); font-size: 1rem; font-family: 'Montserrat', sans-serif;
+            transition: var(--transition); box-sizing: border-box;
+        }
+        .input-modern:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1); }
+
+
+        /* Estilos para Panel Admin Mejorado */
+        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-box { 
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark)); 
+            color: var(--white); padding: 30px; border-radius: var(--border-radius-card); 
+            text-align: center; box-shadow: 0 10px 30px rgba(46, 125, 50, 0.2); 
+            transition: var(--transition);
+        }
+        .stat-box:hover { transform: translateY(-8px); box-shadow: 0 15px 40px rgba(46, 125, 50, 0.3); }
+        .stat-number { font-size: 3.5rem; font-weight: 700; margin-bottom: 10px; display: block; }
+        .stat-label { font-size: 0.95rem; opacity: 0.95; font-weight: 500; }
+
+        .stat-total { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+        .stat-employees { background: linear-gradient(135deg, #388e3c, #2e7d32); }
+        .stat-promedio { background: linear-gradient(135deg, #43a047, #388e3c); }
+
+        /* Tabla de Empleados */
+        .table-container { overflow-x: auto; margin-top: 20px; }
+        .hours-table { 
+            width: 100%; border-collapse: collapse; 
+            background: var(--white);
+        }
+        .hours-table thead { background: var(--primary); color: var(--white); }
+        .hours-table th { 
+            padding: 16px; text-align: left; font-weight: 600; 
+            font-size: 0.95rem; letter-spacing: 0.5px;
+        }
+        .hours-table tbody tr { 
+            border-bottom: 1px solid #e0e0e0; 
+            transition: var(--transition);
+        }
+        .hours-table tbody tr:hover { background-color: #f9fdf8; }
+        .hours-table td { 
+            padding: 14px 16px; font-size: 0.95rem; 
+        }
+        .hours-table td:first-child { color: #999; font-weight: 600; }
+        .hours-table td:nth-child(3) { font-weight: 600; color: var(--primary); font-size: 1.1rem; }
+
+        /* Botones de Acción en Tabla */
+        .action-buttons { display: flex; gap: 8px; }
+        .btn-action { 
+            padding: 6px 12px; border: none; border-radius: 6px; 
+            cursor: pointer; font-size: 0.85rem; transition: var(--transition); 
+            font-weight: 500;
+        }
+        .btn-add { background: #4caf50; color: white; }
+        .btn-add:hover { background: #45a049; transform: scale(1.05); }
+        .btn-reset { background: #ff9800; color: white; }
+        .btn-reset:hover { background: #e68900; transform: scale(1.05); }
+        .btn-delete { background: #f44336; color: white; }
+        .btn-delete:hover { background: #da190b; transform: scale(1.05); }
+
+        .card { background: var(--white); border-radius: var(--border-radius-card); padding: 35px; box-shadow: var(--shadow-light); }
+        .card h3 { color: var(--primary-dark); margin-bottom: 20px; font-size: 1.5rem; }
+
+        /* Ocultar menú en paneles */
+        .hidden-panel { display: none !important; }
+
+        /* Mensaje de éxito del formulario */
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius-card);
+            margin-bottom: 20px;
+            text-align: center;
+            font-weight: 600;
+            animation: slideDown 0.5s ease-in-out;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .success-message i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        .main-footer { background: var(--dark); color: rgba(255,255,255,0.8); padding: 50px 0; font-size: 0.9rem; }
+        .footer-content { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        .footer-section { text-align: center; }
+        .footer-section p { margin: 0; color: rgba(255,255,255,0.7); }
+
+        /* Redes Sociales */
+        .social-section h3 { color: var(--accent); font-size: 1.1rem; margin-bottom: 20px; font-weight: 600; }
+        .social-links { display: flex; justify-content: center; gap: 25px; }
+        .social-link { 
+            display: inline-flex; align-items: center; justify-content: center; 
+            width: 50px; height: 50px; border-radius: 50%; 
+            background: rgba(255, 255, 255, 0.1); color: var(--accent); 
+            font-size: 1.5rem; transition: var(--transition); 
+            border: 2px solid transparent;
+        }
+        .social-link:hover { 
+            background: var(--primary); color: var(--white); 
+            transform: translateY(-5px); border-color: var(--accent);
+        }
+        .social-link.tiktok:hover { background: #000; }
+        .social-link.instagram:hover { background: #E1306C; }
+        .social-link.facebook:hover { background: #1877F2; }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 3.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .section-title { font-size: 2.5rem; }
+            .contact-box { grid-template-columns: 1fr; }
+            .contact-info, .contact-form { padding: 40px; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .main-nav { display: none; /* Oculta por defecto en móvil */
+                position: absolute; top: 100%; left: 0; width: 100%; 
+                background: var(--white); box-shadow: var(--shadow-medium); 
+                padding: 20px 0; border-radius: 0 0 15px 15px; 
+            }
+            .main-nav.active { display: block; } /* Mostrado por JS */
+            .nav-list { flex-direction: column; align-items: center; padding: 0; }
+            .nav-list li { width: 100%; text-align: center; padding: 10px 0; }
+            .nav-list .btn { width: 80%; margin: 10px auto; }
+            .menu-toggle { display: block; }
+
+            .hero { height: 70vh; padding: 20px; }
+            .hero-content { max-width: 100%; }
+            .hero h1 { font-size: 2rem; color: var(--white) !important; opacity: 1 !important; line-height: 1.3; }
+            .hero p { font-size: 0.95rem; color: var(--white) !important; }
+            .hero-btns { flex-direction: column; gap: 12px; align-items: center; }
+            .hero-btns .btn { width: 85%; max-width: 350px; }
+
+            .section { padding: 60px 0; }
+            .section-title { font-size: 2rem; }
+            .section-subtitle { font-size: 1rem; margin-bottom: 40px; }
+            
+            .services-grid, .benefits-grid { grid-template-columns: 1fr; }
+
+            .panel-header { flex-direction: column; gap: 15px; text-align: center; }
+            .panel-header h2 { font-size: 1.8rem; }
+            .dashboard-grid .card { padding: 25px; }
+
+            .hours-circle { width: 140px; height: 140px; font-size: 3.5rem; border-width: 8px; }
+            .hours-circle small { font-size: 0.75rem; }
+
+            .stats-container { grid-template-columns: 1fr; }
+            .hours-table { font-size: 0.85rem; }
+            .hours-table th, .hours-table td { padding: 10px 8px; }
+            .action-buttons { flex-wrap: wrap; }
+            .btn-action { padding: 4px 8px; font-size: 0.75rem; }
+
+            .footer-content { grid-template-columns: 1fr; gap: 25px; }
+            .social-link { width: 45px; height: 45px; font-size: 1.3rem; }
+        }
+
+        @media (max-width: 480px) {
+            .logo { font-size: 1.5rem; }
+            .hero { height: 75vh; padding: 15px; }
+            .hero-content { max-width: 100%; }
+            .hero h1 { font-size: 1.6rem; line-height: 1.3; margin-bottom: 15px; text-shadow: 1px 1px 4px rgba(0,0,0,0.8); color: var(--white) !important; opacity: 1 !important; word-wrap: break-word; }
+            .hero p { font-size: 0.85rem; opacity: 0.95; margin: 0 auto 20px auto; color: var(--white) !important; line-height: 1.4; }
+            .hero-btns { flex-direction: column; gap: 10px; align-items: center; }
+            .hero-btns .btn { margin: 5px 0; width: 90%; max-width: 300px; padding: 10px 20px; font-size: 0.9rem; }
+            .section-title { font-size: 1.5rem; }
+            .modal-content { width: 95%; max-width: 100%; }
+            .container { padding: 0 12px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container header-content">
+            <a href="#" class="logo">AGROPAUL<span class="highlight">.SL</span></a>
+            <nav class="main-nav" id="mainNav">
+                <ul class="nav-list">
+                    <li><a href="#servicios" class="nav-link">Servicios</a></li>
+                    <li><a href="#cursos" class="nav-link">Cursos</a></li>
+                    <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+                    <li><a href="#contacto" class="nav-link">Contacto</a></li>
+                    <li><button class="btn btn-outline" onclick="openLoginModal('trabajador')">Acceso Trabajador</button></li>
+                    <li><button class="btn btn-filled" onclick="openLoginModal('admin')">Panel Admin</button></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-overlay"></div>
+            <div class="container hero-content">
+                <h1 class="fade-in" data-aos="fade-up">Innovación y Pasión por la <span class="highlight">Tierra</span></h1>
+                <p class="fade-in" data-aos="fade-up" data-aos-delay="200">Soluciones integrales para el sector agrícola. Poda técnica, mantenimiento y gestión profesional.</p>
+                <div class="hero-btns fade-in" data-aos="fade-up" data-aos-delay="400">
+                    <a href="#contacto" class="btn btn-filled">Contratar Servicio</a>
+                    <a href="#servicios" class="btn btn-white">Saber Más</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicios" class="section">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Nuestra Especialidad <span class="highlight">Agrícola</span></h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Implementamos las mejores prácticas para maximizar el rendimiento y la sostenibilidad de tus cultivos.</p>
+                <div class="services-grid">
+                    <div class="card service-card" data-aos="fade-right" data-aos-delay="200">
+                        <div class="img-container">
+                            <img src="images/poda-tecnica.jpg" alt="Poda">
+                        </div>
+                        <div class="card-content">
+                            <h3>Poda Técnica Avanzada</h3>
+                            <p>Especialistas en cítricos, caqui y frutales de hueso. Optimizamos la estructura del árbol para una producción abundante y de calidad.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="img-container">
+                            <img src="images/aclareo-recoleccion.jpg" alt="Aclareo">
+                        </div>
+                        <div class="card-content">
+                            <h3>Aclareo y Recolección</h3>
+                            <p>Mediante técnicas de aclareo manual, aseguramos un mayor calibre y dulzor en cada fruto. Recolección eficiente y cuidadosa.</p>
+                        </div>
+                    </div>
+                    <div class="card service-card" data-aos="fade-left" data-aos-delay="400">
+                        <div class="img-container">
+                            <img src="images/gestion-fincas.jpg" alt="Mantenimiento">
+                        </div>
+                        <div class="card-content">
+                            <h3>Gestión Integral de Fincas</h3>
+                            <p>Control fitosanitario, análisis de suelos, planes de riego y fertilización personalizados. Tu finca en manos expertas todo el año.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cursos" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Nuestros <span class="highlight">Cursos de Formación</span></h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Conviértete en experto en poda técnica con nuestros cursos de 24 horas. Certificado profesional incluido.</p>
+                <div class="services-grid">
+                    <div class="card service-card" data-aos="fade-right" data-aos-delay="200">
+                        <div class="img-container">
+                            <img src="images/caquis-arbol.jpg" alt="Curso de Poda de Caquis">
+                        </div>
+                        <div class="card-content">
+                            <h3>Curso de Poda de Caquis</h3>
+                            <p><strong>24 horas | Certificado Profesional</strong></p>
+                            <p>Aprende las técnicas avanzadas de poda para árboles de caqui. Domina el arte de la poda técnica, equilibrio vegetativo y maximización de rendimiento. Incluye prácticas en campo y certificación al completar el curso.</p>
+                            
+                            <ul style="text-align: left; margin: 15px 0; font-size: 0.95rem; line-height: 1.8;">
+                                <li>✓ Anatomía y fisiología del caqui</li>
+                                <li>✓ Técnicas de poda estacional</li>
+                                <li>✓ Herramientas y seguridad</li>
+                                <li>✓ Prácticas intensivas en campo</li>
+                                <li>✓ Certificado de profesionalidad</li>
+                            </ul>
+                            <button class="btn btn-filled btn-block" onclick="openContactModal('Curso Poda de Caquis')">Inscribirse Ahora</button>
+                        </div>
+                    </div>
+                    <div class="card service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="img-container">
+                            <img src="images/arbol-naranjas.jpg" alt="Curso de Poda de Naranjas">
+                        </div>
+                        <div class="card-content">
+                            <h3>Curso de Poda de Naranjas</h3>
+                            <p><strong>24 horas | Certificado Profesional</strong></p>
+                            <p>Especialízate en la poda profesional de árboles cítricos. Diseño de copa, equilibrio de ramas, control del crecimiento vegetativo y técnicas modernas para optimizar la producción. Formación integral con prácticas reales.</p>
+                            <ul style="text-align: left; margin: 15px 0; font-size: 0.95rem; line-height: 1.8;">
+                                <li>✓ Características de árboles cítricos</li>
+                                <li>✓ Sistemas de poda moderna</li>
+                                <li>✓ Control fitosanitario</li>
+                                <li>✓ Productividad y calidad</li>
+                                <li>✓ Certificado de profesionalidad</li>
+                            </ul>
+                            <button class="btn btn-filled btn-block" onclick="openContactModal('Curso Poda de Naranjas')">Inscribirse Ahora</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="font-size: 1.1rem; color: var(--dark); margin-bottom: 20px;">¿Necesitas más información sobre nuestros cursos?</p>
+                    <a href="#contacto" class="btn btn-outline">Solicitar Información de Cursos</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="beneficios" class="section section-alt">
+            <div class="container">
+                <h2 class="section-title" data-aos="fade-up">Beneficios de Elegir <span class="highlight">Agropaul</span></h2>
+                <div class="benefits-grid">
+                    <div class="benefit-item" data-aos="zoom-in" data-aos-delay="100">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Mayor Rentabilidad</h3>
+                        <p>Incrementamos la producción y la calidad de tus cosechas, traduciéndose en mayores ingresos.</p>
+                    </div>
+                    <div class="benefit-item" data-aos="zoom-in" data-aos-delay="200">
+                        <i class="fas fa-leaf"></i>
+                        <h3>Sostenibilidad Garantizada</h3>
+                        <p>Aplicamos métodos respetuosos con el medio ambiente, cuidando la tierra para futuras generaciones.</p>
+                    </div>
+                    <div class="benefit-item" data-aos="zoom-in" data-aos-delay="300">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Asesoramiento Experto</h3>
+                        <p>Contarás con el respaldo de agrónomos y técnicos altamente cualificados en cada etapa.</p>
+                    </div>
+                    <div class="benefit-item" data-aos="zoom-in" data-aos-delay="400">
+                        <i class="fas fa-clock"></i>
+                        <h3>Optimización del Tiempo</h3>
+                        <p>Nos encargamos de las labores más intensas, liberando tu tiempo para otras prioridades.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contacto" class="section section-dark">
+            <div class="container">
+                <div class="contact-box" data-aos="fade-up">
+                    <div class="contact-info">
+                        <h2>¿Hablamos de tu <span class="highlight">proyecto</span>?</h2>
+                        <p>Solicita un presupuesto sin compromiso o únete a nuestro equipo de profesionales.</p>
+                        <div class="info-item"><i class="fas fa-envelope"></i> agropaul29@gmail.com</div>
+                        <div class="info-item"><i class="fas fa-phone"></i> +34 642 873 776</div>
+                
+                    <form id="contact-form" action="https://formsubmit.co/agropaul29@gmail.com" method="POST" class="contact-form">
+                        <input type="text" name="name" placeholder="Tu Nombre Completo" required>
+                        <input type="email" name="email" placeholder="Correo Electrónico" required>
+                        <select name="motivo">
+                            <option value="Presupuesto">Necesito un servicio</option>
+                            <option value="Inscripción a Curso">Inscripción a Curso</option>
+                            <option value="Empleo">Quiero trabajar</option>
+                            <option value="Informacion">Solicitar Información</option>
+                        </select>
+                        <textarea name="mensaje" placeholder="Detalles de tu solicitud..." rows="4" required></textarea>
+                        
+                        <input type="hidden" name="_next" value="https://agropaul.es?success=true">
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_subject" value="Nueva Solicitud Agropaul.es">
+                        <input type="hidden" name="_template" value="table">
+                        
+                        <button type="submit" class="btn btn-filled btn-block">Enviar Ahora</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="admin-panel" class="section dashboard" style="display:none;">
+        <div class="container">
+            <div class="panel-header" data-aos="fade-down">
+                <h2>Panel Administrador - Gestión de Horas</h2>
+                <button class="btn btn-danger" onclick="logout()">Cerrar Sesión</button>
+            </div>
+            
+            <!-- Sección de Registro Rápido -->
+            <div class="card" data-aos="fade-down" style="margin-bottom: 30px;">
+                <h3>➕ Registrar Horas del Día</h3>
+                <div style="display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 15px; align-items: end;">
+                    <select id="select-trabajador" class="input-modern" style="padding: 12px;"></select>
+                    <input type="number" id="input-horas" class="input-modern" placeholder="Horas" value="8" min="1" max="12" style="padding: 12px;">
+                    <button class="btn btn-filled" onclick="guardarHoras()" style="padding: 12px 20px; width: 100%;">Guardar</button>
+                </div>
+            </div>
+
+            <!-- Estadísticas General -->
+            <div class="stats-container" data-aos="fade-up">
+                <div class="stat-box stat-total">
+                    <div class="stat-number" id="total-general">0</div>
+                    <div class="stat-label">Horas Totales Registradas</div>
+                </div>
+                <div class="stat-box stat-employees">
+                    <div class="stat-number" id="total-empleados">28</div>
+                    <div class="stat-label">Total de Empleados</div>
+                </div>
+                <div class="stat-box stat-promedio">
+                    <div class="stat-number" id="promedio-horas">0</div>
+                    <div class="stat-label">Promedio por Empleado</div>
+                </div>
+            </div>
+
+            <!-- Tabla de Estadísticas de Empleados -->
+            <div class="card" data-aos="fade-up" style="margin-top: 30px;">
+                <h3>📊 Estadísticas de Empleados</h3>
+                <div class="table-container">
+                    <table class="hours-table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nombre del Empleado</th>
+                                <th>Horas Registradas</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabla-empleados">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="worker-panel" class="section dashboard" style="display:none;">
+        <div class="container text-center">
+            <div class="panel-header" data-aos="fade-down">
+                <h2>Mis Horas</h2>
+                <button class="btn btn-danger" onclick="logout()">Cerrar Sesión</button>
+            </div>
+            <div class="card worker-card" data-aos="zoom-in">
+                <h3>Bienvenido, <span id="nombre-trabajador-view" class="highlight"></span></h3>
+                <div class="hours-circle">
+                    <span id="total-horas-worker">0</span>
+                    <small>Horas Totales</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content scale-in">
+            <h3 id="modal-title">Acceso</h3>
+            <p id="modal-desc"></p>
+            <input type="text" id="login-user" placeholder="Usuario" class="input-modern">
+            <div id="pass-container">
+                <input type="password" id="login-pass" placeholder="Contraseña Admin" class="input-modern">
+            </div>
+            <button class="btn btn-filled btn-block" onclick="procesarLogin()">Entrar al sistema</button>
+            <button class="btn btn-text" onclick="closeLoginModal()">Cancelar</button>
+        </div>
+    </div>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <p>&copy; 2026 Agropaul.es | Profesionalidad en el Campo | Todos los derechos reservados.</p>
+                </div>
+                <div class="footer-section social-section">
+                    <h3>Síguenos</h3>
+                    <div class="social-links">
+                        <a href="https://www.tiktok.com/@agropaulvalencia?_r=1&_t=ZS-93FqD0HULp7" target="_blank" rel="noopener noreferrer" class="social-link tiktok" title="TikTok - Agropaul">
+                            <i class="fab fa-tiktok"></i>
+                        </a>
+                        <a href="https://www.instagram.com/agropaulvalencia?igsh=YmF1NzVqYmpmZ3Nr" target="_blank" rel="noopener noreferrer" class="social-link instagram" title="Instagram - Agropaul">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/share/1F7bfn7Aoc/" target="_blank" rel="noopener noreferrer" class="social-link facebook" title="Facebook - Agropaul">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000, // Duración de la animación en milisegundos
+            once: true // Solo animar una vez al bajar
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>

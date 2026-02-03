@@ -4,33 +4,38 @@
 const usuarios = {
     admin: { pass: 'admin123', tipo: 'admin' },
     panaitepaul: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Panaite Paul', horas: 0 },
-    stefanmitrea: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Stefan Mitrea', horas: 30 },
-    bayojonathan: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Bayo Jonathan', horas: 31 },
-    gurbiherreda: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Gurbi Herreda Rogelio', horas: 29.5 },
-    constantinboghian: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Constantin Boghian', horas: 29.5 },
-    iancucozma: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Iancu Cozma', horas: 22 },
-    ciprianpreluca: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Ciprian Preluca', horas: 29.5 },
-    sakandarrehan: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Sakandar Rehan', horas: 30.5 },
+    stefanmitrea: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Stefan Mitrea', horas: 8.5 },
+    bayojonathan: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Bayo Jonathan', horas: 9 },
+    gurbiherreda: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Gurbi Herreda Rogelio', horas: 8.5 },
+    constantinboghian: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Constantin Boghian', horas: 8.5 },
+    iancucozma: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Iancu Cozma', horas: 8.5 },
+    ciprianpreluca: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Ciprian Preluca', horas: 8.5 },
+    sakandarrehan: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Sakandar Rehan', horas: 0 },
     munteanuadi: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Munteanu Adi', horas: 0 },
     nistormiha: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Nistor L Miha', horas: 0 },
     andreeaconstantin: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Andreea Constantin', horas: 0 },
-    panaitemih: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Panaite Mihalache', horas: 31 },
-    nicoleta1: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Nicoleta1', horas: 22 },
-    cosmin2: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Cosmin2', horas: 32 },
-    raquel3: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Raquel3', horas: 20 },
-    alicia4: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Alicia4', horas: 26.5 },
-    simona5: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Simona5', horas: 28 },
-    albert6: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Albert6', horas: 29.5 },
-    diego7: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Diego7', horas: 30 },
-    carlos8: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Carlos8', horas: 14.5 },
+    panaitemih: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Panaite Mihalache', horas: 0 },
+    nicoleta1: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Nicoleta1', horas: 6 },
+    cosmin2: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Cosmin2', horas: 8.5 },
+    raquel3: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Raquel3', horas: 6 },
+    alicia4: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Alicia4', horas: 6 },
+    simona5: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Simona5', horas: 0 },
+    albert6: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Albert6', horas: 0 },
+    diego7: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Diego7', horas: 8.5 },
+    carlos8: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Carlos8', horas: 8.5 },
     santiago9: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Santiago9', horas: 0 },
-    kadire10: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Kadire10', horas: 29.5 },
-    karim11: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Karim11', horas: 29.5 },
-    abdel12: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Abdel12', horas: 8 },
-    youseff13: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Youseff13', horas: 22 },
-    abdelgani14: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Abdelgani14', horas: 22.5 },
-    hall15: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Hall15', horas: 23.5 },
-    amine16: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Amine16', horas: 0 }
+    kadire10: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Kadire10', horas: 8.5 },
+    karim11: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Karim11', horas: 8.5 },
+    abdel12: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Abdel12', horas: 9 },
+    youseff13: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Youseff13', horas: 8.5 },
+    abdelgani14: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Abdelgani14', horas: 8.5 },
+    hall15: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Hall15', horas: 8.5 },
+    amine16: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'Amine16', horas: 8.5 }
+    keyder17: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'keyder17', horas: 8.5 }
+    franklin18: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'franklin18', horas: 8.5 }
+    george19: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'george', horas: 8.5 }
+    sergio20: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'sergio20', horas: 3 }
+    breyne21: { pass: 'trabajo123', tipo: 'trabajador', nombre: 'breyne21', horas: 8.5 }
 };
 
 let usuarioActual = null;
@@ -557,3 +562,4 @@ function openContactModal(curso) {
         nameInput.focus();
     }, 500);
 }
+
